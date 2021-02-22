@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pool-pvc
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: cardano-node
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+{{- range $relays := .Values.relays }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: relay-{{ $relays.name }}-pvc
+  namespace: {{ $.Values.namespace }}
+  labels:
+    app: cardano-node
+spec:
+  storageClassName: manual
+  accessModes:
+   - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+{{- end }}

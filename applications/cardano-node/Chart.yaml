@@ -1,0 +1,6 @@
+apiVersion: v2
+name: cardano-node
+description: Nodo de Cardano. 2 Relays, 1 Block producer.
+type: application
+version: 0.1.0
+appVersion: "1.24.2"

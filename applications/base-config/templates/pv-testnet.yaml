@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume-1
+  namespace: cardano-testnet
+  labels:
+    app: cardano-node
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data1"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume-2
+  namespace: cardano-testnet
+  labels:
+    app: cardano-node
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data2"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume-3
+  namespace: cardano-testnet
+  labels:
+    app: cardano-node
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data3"

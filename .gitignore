@@ -1,0 +1,8 @@
+.idea
+cardano-pool-certs-testnet.yaml
+*.cert
+*.skey
+*.vkey
+*.key
+*certs.yaml
+kubeseal
