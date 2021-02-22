@@ -49,8 +49,8 @@ spec:
           enabled: false
 
   destination:
-    namespace: monitoring
-    server: https://kubernetes.default.svc
+    namespace: observe
+    server: {{ .Values.spec.destination.server }}
 
   syncPolicy:
     automated:

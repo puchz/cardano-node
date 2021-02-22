@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: base-config
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/puchz/cardano-node.git
+    targetRevision: {{ .Values.git.targetRevision }}
+    path: applications/cardano-node
+    helm:
+      valueFiles:
+        - values-testnet.yaml
+
+  destination:
+    namespace: default
+    server: {{ .Values.spec.destination.server }}
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

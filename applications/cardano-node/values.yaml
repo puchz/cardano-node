@@ -1,18 +1,1 @@
-network: testnet
-namespace: cardano-testnet
-relayPort: 3000
-nodePort: 30000
 storageSize: 5Gi
-
-pool:
-  name: block
-  enabled: true
-  port: 3000
-
-relays:
-  - name: uno
-    enabled: true
-    port: 3000
-  - name: dos
-    enabled: true
-    port: 3000
