@@ -50,6 +50,20 @@ spec:
         ports:
           - containerPort: {{ $pool.port }}
             name: node
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: prom
+          initialDelaySeconds: 120
+          periodSeconds: 5
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: prom
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 10
         volumeMounts:
           - name: config-files
             mountPath: "/etc/config/testnet-topology.json"

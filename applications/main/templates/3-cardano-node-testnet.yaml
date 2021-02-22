@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: base-config
+  name: cardano-node
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io

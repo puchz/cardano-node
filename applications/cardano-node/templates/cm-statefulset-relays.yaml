@@ -44,6 +44,26 @@ spec:
         ports:
           - containerPort: {{ $relays.port }}
             name: node
+          - name: prom
+            containerPort: {{ $relays.prometheusPort | default 12798 }}
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: prom
+          initialDelaySeconds: 120
+          periodSeconds: 5
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: prom
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 10
+        {{- with $.Values.resources }}
+        resources:
+{{ toYaml . | indent 12 }}
+        {{- end }}
         volumeMounts:
           - name: config-files
             mountPath: "/etc/config/testnet-topology.json"
