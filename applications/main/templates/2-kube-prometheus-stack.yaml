@@ -49,7 +49,7 @@ spec:
           enabled: false
 
   destination:
-    namespace: observe
+    namespace: monitoring
     server: {{ .Values.spec.destination.server }}
 
   syncPolicy:
