@@ -52,14 +52,14 @@ spec:
             port: prom
           initialDelaySeconds: 300
           periodSeconds: 30
-          timeoutSeconds: 20
+          timeoutSeconds: 40
         readinessProbe:
           httpGet:
             path: /metrics
             port: prom
           initialDelaySeconds: 300
           periodSeconds: 30
-          timeoutSeconds: 20
+          timeoutSeconds: 40
         {{- with $.Values.resources }}
         resources:
 {{ toYaml . | indent 12 }}
@@ -139,14 +139,14 @@ spec:
             port: prom
           initialDelaySeconds: 300
           periodSeconds: 30
-          timeoutSeconds: 20
+          timeoutSeconds: 40
         readinessProbe:
           httpGet:
             path: /metrics
             port: prom
           initialDelaySeconds: 300
           periodSeconds: 30
-          timeoutSeconds: 20
+          timeoutSeconds: 40
         volumeMounts:
           - name: config-files
             mountPath: "/etc/config/testnet-topology.json"
