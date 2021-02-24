@@ -50,16 +50,16 @@ spec:
           httpGet:
             path: /metrics
             port: prom
-          initialDelaySeconds: 120
-          periodSeconds: 5
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 30
+          timeoutSeconds: 20
         readinessProbe:
           httpGet:
             path: /metrics
             port: prom
-          initialDelaySeconds: 30
-          periodSeconds: 5
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 30
+          timeoutSeconds: 20
         {{- with $.Values.resources }}
         resources:
 {{ toYaml . | indent 12 }}
