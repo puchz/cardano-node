@@ -7,4 +7,14 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: dnsutils
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: cardano-testnet
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cardano-mainnet

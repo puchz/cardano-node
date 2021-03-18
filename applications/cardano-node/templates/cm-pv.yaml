@@ -3,13 +3,13 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-volume-1
-  namespace: cardano-testnet
+  namespace: {{ .Values.namespace }}
   labels:
-    app: cardano-node
+    app: {{ .Release.Name }}
 spec:
   storageClassName: manual
   capacity:
-    storage: 5Gi
+    storage: {{ .Values.storageSize }}
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -19,13 +19,13 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-volume-2
-  namespace: cardano-testnet
+  namespace: {{ .Values.namespace }}
   labels:
-    app: cardano-node
+    app: {{ .Release.Name }}
 spec:
   storageClassName: manual
   capacity:
-    storage: 5Gi
+    storage: {{ .Values.storageSize }}
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -35,13 +35,13 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-volume-3
-  namespace: cardano-testnet
+  namespace: {{ .Values.namespace }}
   labels:
-    app: cardano-node
+    app: {{ .Release.Name }}
 spec:
   storageClassName: manual
   capacity:
-    storage: 5Gi
+    storage: {{ .Values.storageSize }}
   accessModes:
     - ReadWriteOnce
   hostPath:

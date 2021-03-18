@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-pool
+  namespace: {{ $.Values.namespace }}
   labels:
     app: {{ .Release.Name }}
 spec:
@@ -22,6 +23,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $.Release.Name }}-relay-{{ $relays.name }}
+  namespace: {{ $.Values.namespace }}
   labels:
     app: {{ $.Release.Name }}
 spec:
@@ -41,6 +43,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-relay-out
+  namespace: {{ $.Values.namespace }}
 spec:
   selector:
     app: {{ .Release.Name }}
@@ -53,3 +56,19 @@ spec:
       targetPort: node
       nodePort: {{ .Values.nodePort }}
   type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-relay-int
+  namespace: {{ $.Values.namespace }}  
+spec:
+  selector:
+    app: {{ .Release.Name }}
+    type: relay
+    network: {{ .Values.network }}
+  ports:
+    - protocol: TCP
+      name: prom
+      port: {{ .Values.prometheusPort | default 12798 }}
+      targetPort: prom

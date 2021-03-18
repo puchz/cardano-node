@@ -7,3 +7,12 @@ resources:
   requests:
     memory: "1Gi"
     cpu: 1
+
+topologyUpdater:
+  enabled: true
+  image:
+    repository: "cn-utils"
+    tag: "0.1"
+  maxPeers: 15
+
+  prometheusPort: 12798
