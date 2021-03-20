@@ -38,14 +38,14 @@ spec:
           - "--host-addr"
           - "0.0.0.0"
           - "--port"
-          - "3000"
+          - {{ $relays.port | quote }}
           - "--config"
-          - "/etc/config/testnet-config.json"
+          - "/etc/config/{{ $.Values.network }}-config.json"
         ports:
-          - containerPort: {{ $relays.port }}
-            name: node
+          - name: node
+            containerPort: {{ $relays.port }}
           - name: prom
-            containerPort: {{ $relays.prometheusPort | default 12798 }}
+            containerPort: {{ $.Values.prometheusPort | default 12798 }}
         livenessProbe:
           httpGet:
             path: /metrics
@@ -121,9 +121,9 @@ spec:
           - "--host-addr"
           - "0.0.0.0"
           - "--port"
-          - "3000"
+          - {{ $pool.port | quote }}
           - "--config"
-          - "/etc/config/testnet-config.json"
+          - "/etc/config/{{ $.Values.network }}-config.json"
           - "--shelley-kes-key"
           - "/etc/keys/kes.skey"
           - "--shelley-vrf-key"
@@ -131,8 +131,10 @@ spec:
           - "--shelley-operational-certificate"
           - "/etc/keys/node.cert"
         ports:
-          - containerPort: {{ $pool.port }}
-            name: node
+          - name: node
+            containerPort: {{ $pool.port }}
+          - name: prom
+            containerPort: {{ $.Values.prometheusPort | default 12798 }}
         livenessProbe:
           httpGet:
             path: /metrics

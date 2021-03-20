@@ -1,4 +1,5 @@
 storageSize: 5Gi
+prometheusPort: 12798
 
 resources:
   limits:
@@ -14,5 +15,3 @@ topologyUpdater:
     repository: "cn-utils"
     tag: "0.1"
   maxPeers: 15
-
-  prometheusPort: 12798

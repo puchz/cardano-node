@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ .Release.Name }}-svc-monitor
-  namespace: {{ $.Values.namespace }}  
+  namespace: {{ $.Values.namespace }}
   labels:
     release: kube-prometheus-stack
 spec:
@@ -11,7 +11,7 @@ spec:
       port: prom
   namespaceSelector:
     matchNames:
-      - {{ .Release.Namespace }}
+      - {{ $.Values.namespace }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
