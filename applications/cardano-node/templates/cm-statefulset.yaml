@@ -23,7 +23,7 @@ spec:
         network: {{ $.Values.network }}
     spec:
       containers:
-      - image: cardano-node:1.24.2
+      - image: cardano-node:1.25.1
         name: {{ $.Release.Name }}
         command:
           - "cardano-node"
@@ -106,7 +106,7 @@ spec:
         network: {{ .Values.network }}
     spec:
       containers:
-      - image: cardano-node:1.24.2
+      - image: cardano-node:1.25.1
         name: {{ .Release.Name }}
         command:
           - "cardano-node"
