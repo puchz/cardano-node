@@ -1,5 +1,6 @@
 storageSize: 5Gi
 prometheusPort: 12798
+prometheusNamespace: monitoring
 
 resources:
   limits:

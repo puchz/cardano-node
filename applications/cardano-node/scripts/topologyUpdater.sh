@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
+
 set -x
+
+# NODE_BUILD_NUM
+# echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
+# NODE_CONFIG
+# echo export NODE_CONFIG=mainnet
+
 if [ -z "${NETWORK}" ]; then
   echo "Missing required NETWORK env var. Exiting..."
   exit 1
@@ -24,14 +31,13 @@ CNODE_VALENCY=1
 
 if [ "${NETWORK}" = "mainnet" ]; then
   NWMAGIC="764824073"
+  blockNo=$(curl -s cardano-node-relay-int.cardano-mainnet.svc.cluster.local:12798/metrics | grep cardano_node_metrics_blockNum_int  | awk '{print $NF}')
 else
   NWMAGIC="1097911063"
+  blockNo=$(curl -s cardano-node-relay-int.cardano-testnet.svc.cluster.local:12798/metrics | grep cardano_node_metrics_blockNum_int  | awk '{print $NF}')
 fi
 
 NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
-
-#blockNo=$(curl -s cardano-node-relay-int."${NAMESPACE}".svc.cluster.local:12798/metrics | grep cardano_node_ChainDB_metrics_blockNum_int | awk '{print $NF}')
-blockNo=$(curl -s cardano-node-relay-int.cardano-testnet.svc.cluster.local:12798/metrics | grep cardano_node_ChainDB_metrics_blockNum_int | awk '{print $NF}')
 
 if [ ! -z "${CNODE_HOSTNAME}" ]
 then

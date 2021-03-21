@@ -24,13 +24,14 @@ spec:
     spec:
       containers:
       - image: cardano-node:1.25.1
+        imagePullPolicy: Never
         name: {{ $.Release.Name }}
         command:
           - "cardano-node"
         args:
           - "run"
           - "--topology"
-          - "/etc/config/testnet-topology.json"
+          - "/etc/config/{{ $.Values.network }}-topology.json"
           - "--database-path"
           - "/db"
           - "--socket-path"
@@ -66,11 +67,17 @@ spec:
         {{- end }}
         volumeMounts:
           - name: config-files
-            mountPath: "/etc/config/testnet-topology.json"
-            subPath: "testnet-topology-relay.json"
+            mountPath: "/etc/config/{{ $.Values.network }}-topology.json"
+            subPath: "{{ $.Values.network }}-topology-relay.json"
           - name: config-files
-            mountPath: "/etc/config/testnet-config.json"
-            subPath: "testnet-config.json"
+            mountPath: "/etc/config/{{ $.Values.network }}-config.json"
+            subPath: "{{ $.Values.network }}-config.json"
+          - name: config-files
+            mountPath: "/etc/config/{{ $.Values.network }}-shelley-genesis.json"
+            subPath: "{{ $.Values.network }}-shelley-genesis.json"
+          - name: config-files
+            mountPath: "/etc/config/{{ $.Values.network }}-byron-genesis.json"
+            subPath: "{{ $.Values.network }}-byron-genesis.json"
           - name: db
             mountPath: /db
       volumes:
@@ -107,13 +114,14 @@ spec:
     spec:
       containers:
       - image: cardano-node:1.25.1
+        imagePullPolicy: Never
         name: {{ .Release.Name }}
         command:
           - "cardano-node"
         args:
           - "run"
           - "--topology"
-          - "/etc/config/testnet-topology.json"
+          - "/etc/config/{{ .Values.network }}-topology.json"
           - "--database-path"
           - "/db"
           - "--socket-path"
@@ -123,7 +131,7 @@ spec:
           - "--port"
           - {{ $pool.port | quote }}
           - "--config"
-          - "/etc/config/{{ $.Values.network }}-config.json"
+          - "/etc/config/{{ .Values.network }}-config.json"
           - "--shelley-kes-key"
           - "/etc/keys/kes.skey"
           - "--shelley-vrf-key"
@@ -134,7 +142,7 @@ spec:
           - name: node
             containerPort: {{ $pool.port }}
           - name: prom
-            containerPort: {{ $.Values.prometheusPort | default 12798 }}
+            containerPort: {{ .Values.prometheusPort | default 12798 }}
         livenessProbe:
           httpGet:
             path: /metrics
@@ -151,11 +159,17 @@ spec:
           timeoutSeconds: 40
         volumeMounts:
           - name: config-files
-            mountPath: "/etc/config/testnet-topology.json"
-            subPath: "testnet-topology-pool.json"
+            mountPath: "/etc/config/{{ .Values.network }}-topology.json"
+            subPath: "{{ .Values.network }}-topology-pool.json"
           - name: config-files
-            mountPath: "/etc/config/testnet-config.json"
-            subPath: "testnet-config.json"
+            mountPath: "/etc/config/{{ .Values.network }}-config.json"
+            subPath: "{{ .Values.network }}-config.json"
+          - name: config-files
+            mountPath: "/etc/config/{{ .Values.network }}-shelley-genesis.json"
+            subPath: "{{ .Values.network }}-shelley-genesis.json"
+          - name: config-files
+            mountPath: "/etc/config/{{ .Values.network }}-byron-genesis.json"
+            subPath: "{{ .Values.network }}-byron-genesis.json"
           - name: secret-keys
             mountPath: /etc/keys/vrf.skey
             subPath: vrf.skey
@@ -173,7 +187,7 @@ spec:
             name: {{ .Release.Name }}-configmap
         - name: secret-keys
           secret:
-            secretName: cardano-testnet-secrets
+            secretName: cardano-{{ .Values.network }}-secrets
             defaultMode: 0400
         - name: db
           persistentVolumeClaim:
