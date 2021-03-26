@@ -62,13 +62,19 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}-relay-int
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/instance: cardano-exporter
+    app.kubernetes.io/name: prometheus-cardano-exporter
 spec:
   selector:
     app: {{ .Release.Name }}
-    type: relay
     network: {{ .Values.network }}
   ports:
-    - protocol: TCP
-      name: prom
-      port: {{ .Values.prometheusPort | default 12798 }}
+    - name: prom
+      protocol: TCP
+      port: 12798
       targetPort: prom
+    - name: prom2
+      protocol: TCP
+      port: 9100
+      targetPort: prom2

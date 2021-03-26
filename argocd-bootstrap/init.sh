@@ -2,7 +2,7 @@
 
 ARGO_CD_VERSION=v1.8.5
 
-BASE64_GITHUB_DEPLOY_KEY=$(cat ~/.ssh/<id_rsa_name> | base64 --wrap=0)
+BASE64_GITHUB_DEPLOY_KEY=$(cat ~/.ssh/id_rsa | base64 --wrap=0)
 if [ -z "${BASE64_GITHUB_DEPLOY_KEY}" ]; then
   echo "BASE64_GITHUB_DEPLOY_KEY is empty"
   echo "You can generate the key issueing echo <key> | base64 --wrap=0"

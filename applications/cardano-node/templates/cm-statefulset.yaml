@@ -47,6 +47,8 @@ spec:
             containerPort: {{ $relays.port }}
           - name: prom
             containerPort: {{ $.Values.prometheusPort | default 12798 }}
+          - name: prom2
+            containerPort: {{ $.Values.prometheusPort2 | default 9100 }}
         livenessProbe:
           httpGet:
             path: /metrics
@@ -143,6 +145,8 @@ spec:
             containerPort: {{ $pool.port }}
           - name: prom
             containerPort: {{ .Values.prometheusPort | default 12798 }}
+          - name: prom2
+            containerPort: {{ $.Values.prometheusPort2 | default 9100 }}
         livenessProbe:
           httpGet:
             path: /metrics

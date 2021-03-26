@@ -2,15 +2,19 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ .Release.Name }}-svc-monitor
-  namespace: {{ .Values.prometheusNamespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     release: kube-prometheus-stack
 spec:
   endpoints:
     - port: prom
+      path: /metrics
+      interval: 1m
+      scrapeTimeout: 1m
   namespaceSelector:
     matchNames:
       - {{ .Values.namespace }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app.kubernetes.io/instance: cardano-exporter
+      app.kubernetes.io/name: prometheus-cardano-exporter
