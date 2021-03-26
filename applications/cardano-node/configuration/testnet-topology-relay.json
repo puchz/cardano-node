@@ -6,6 +6,48 @@
       "valency": 2
     },
     {
+      "addr": "relays.cardano-testnet.uniquestaking.com",
+      "port": 3001,
+      "continent": "North America",
+      "state": "Iowa"
+    },
+    {
+      "addr": "relay.cardano-dev.securestaking.io",
+      "port": 3000,
+      "continent": "Europe",
+      "state": "DE"
+    },
+    {
+      "addr": "adatestnet.huths0lostakepool.com",
+      "port": 6969,
+      "continent": "North America",
+      "state": "California"
+    },
+    {
+      "addr": "adatestnet.huths0lostakepool.com",
+      "port": 6970,
+      "continent": "North America",
+      "state": "California"
+    },
+    {
+      "addr": "rocinante-relay00.adakailabs.com",
+      "port": 3000,
+      "continent": "North America",
+      "state": "New Jersey"
+    },
+    {
+      "addr": "rocinante-relay01.adakailabs.com",
+      "port": 3001,
+      "continent": "North America",
+      "state": "New Jersey"
+    },
+    {
+      "addr": "relay1.testnet.adacore.io",
+      "port": 6000,
+      "continent": "Oceania",
+      "state": "AU"
+    },
+    {
       "addr": "cardano-node-pool.cardano-testnet.svc.cluster.local",
       "port": 3000,
       "valency": 1
