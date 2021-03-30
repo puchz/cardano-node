@@ -36,19 +36,6 @@ spec:
       prune: true
       selfHeal: true
     validate: true
-
-server:
-  config:
-    repositories: |
-      - url: https://github.com/puchz/cardano-node.git
-      - url: https://bitnami-labs.github.io/sealed-secrets
-      - url: https://prometheus-community.github.io/helm-charts
-        name: prometheus-community
-        type: helm
-global:
-  image:
-    repository: argoproj/argocd
-    tag: ${ARGO_CD_VERSION}
 EOF
 
 cat > values-base.yaml << EOF
