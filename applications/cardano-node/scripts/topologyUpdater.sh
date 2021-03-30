@@ -31,24 +31,24 @@ CNODE_VALENCY=1
 
 if [ "${NETWORK}" = "mainnet" ]; then
   NWMAGIC="764824073"
-  blockNo=$(curl -s cardano-node-relay-int.cardano-mainnet.svc.cluster.local:12798/metrics | grep cardano_node_metrics_blockNum_int  | awk '{print $NF}')
+  BLOCKNO=$(curl -s cardano-node-relay-int.cardano-mainnet.svc.cluster.local:12798/metrics | grep cardano_node_metrics_blockNum_int  | awk '{print $NF}')
 else
   NWMAGIC="1097911063"
-  blockNo=$(curl -s cardano-node-relay-int.cardano-testnet.svc.cluster.local:12798/metrics | grep cardano_node_metrics_blockNum_int  | awk '{print $NF}')
+  BLOCKNO=$(curl -s cardano-node-relay-int.cardano-testnet.svc.cluster.local:12798/metrics | grep cardano_node_metrics_blockNum_int  | awk '{print $NF}')
 fi
 
-NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+printf "Date ---> %s\n" "$(date)"
+
+curl -o "${CNODE_TOPOLOGY}".tmp "${BASE_URL}/fetch/?max=${MAX_PEERS}&magic=${NWMAGIC}"
+
+if [ -z "${BLOCKNO}" ]; then
+  echo "Missing block number (cardano_node_metrics_blockNum_int). Exiting..."
+  exit 1
+fi
 
 if [ ! -z "${CNODE_HOSTNAME}" ]
 then
   HOSTNAME_ARG="&hostname=${CNODE_HOSTNAME}"
 fi
 
-CURL_COMMAND="curl ${BASE_URL}/?port=${CNODE_PORT}&blockNo=${blockNo}${HOSTNAME_ARG}&valency=${CNODE_VALENCY}&magic=${NWMAGIC}"
-
-echo "=> (${CURL_COMMAND})"
-
-date
-
-curl "${BASE_URL}/?port=${CNODE_PORT}&blockNo=${blockNo}${HOSTNAME_ARG}&valency=${CNODE_VALENCY}&magic=${NWMAGIC}"
-curl -o "${CNODE_TOPOLOGY}".tmp "${BASE_URL}/fetch/?max=${MAX_PEERS}&magic=${NWMAGIC}"
+curl "${BASE_URL}/?port=${CNODE_PORT}&blockNo=${BLOCKNO}${HOSTNAME_ARG}&valency=${CNODE_VALENCY}&magic=${NWMAGIC}"
