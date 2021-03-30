@@ -11,6 +11,9 @@ spec:
     repoURL: https://github.com/puchz/cardano-node.git
     targetRevision: {{ .Values.git.targetRevision }}
     path: applications/base-config
+    helm:
+      valueFiles:
+        - values-testnet.yaml
 
   destination:
     namespace: default
