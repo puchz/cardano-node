@@ -1,0 +1,5 @@
+namespaceClaim: cardano-testnet
+storageCapacity: 5Gi
+
+nodes:
+  - romilda
