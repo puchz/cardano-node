@@ -23,6 +23,9 @@ spec:
     repoURL: https://github.com/puchz/cardano-node.git
     targetRevision: HEAD
     path: applications/main
+    helm:
+      valueFiles:
+        - values-testnet.yaml
 
   destination:
     namespace: argocd
@@ -33,6 +36,19 @@ spec:
       prune: true
       selfHeal: true
     validate: true
+
+server:
+  config:
+    repositories: |
+      - url: https://github.com/puchz/cardano-node.git
+      - url: https://bitnami-labs.github.io/sealed-secrets
+      - url: https://prometheus-community.github.io/helm-charts
+        name: prometheus-community
+        type: helm
+global:
+  image:
+    repository: argoproj/argocd
+    tag: ${ARGO_CD_VERSION}
 EOF
 
 cat > values-base.yaml << EOF
@@ -44,12 +60,6 @@ server:
       - url: https://prometheus-community.github.io/helm-charts
         name: prometheus-community
         type: helm
-      - url: https://kubernetes-charts.storage.googleapis.com
-        name: stable
-        type: helm
-EOF
-
-cat > values-docker-amd64.yaml << EOF
 global:
   image:
     repository: argoproj/argocd
@@ -72,8 +82,8 @@ data:
   sshPrivateKey: ${BASE64_GITHUB_DEPLOY_KEY}
 type: Opaque" | kubectl apply -f -
 
-helm upgrade -i argocd argo/argo-cd --version 2.10.0 -n argocd -f values-base.yaml -f values-docker-amd64.yaml
+helm upgrade -i argocd argo/argo-cd --version 2.10.0 -n argocd -f values-base.yaml
 
 # Install ArgoCD main-app
 kubectl apply -f main-app.yaml
-rm main-app.yaml values-base.yaml values-docker-amd64.yaml
+rm main-app.yaml values-base.yaml

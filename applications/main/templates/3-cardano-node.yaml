@@ -13,7 +13,7 @@ spec:
     path: applications/cardano-node
     helm:
       valueFiles:
-        - values-testnet.yaml
+        - {{ .Values.cnode }}
 
   destination:
     namespace: default

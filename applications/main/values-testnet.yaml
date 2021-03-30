@@ -1,0 +1,2 @@
+baseConfig: values-testnet.yaml
+cnode: values-testnet.yaml

@@ -13,7 +13,7 @@ spec:
     path: applications/base-config
     helm:
       valueFiles:
-        - values-testnet2.yaml
+        - {{ .Values.baseConfig }}
 
   destination:
     namespace: default

@@ -1,0 +1,14 @@
+{
+  "Producers": [
+    {
+      "addr": "cardano-node-relay-uno.cardano-mainnet.svc.cluster.local",
+      "port": 3000,
+      "valency": 1
+    },
+    {
+      "addr": "cardano-node-relay-dos.cardano-mainnet.svc.cluster.local",
+      "port": 3000,
+      "valency": 1
+    }
+  ]
+}

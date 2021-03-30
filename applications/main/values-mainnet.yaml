@@ -1,0 +1,2 @@
+baseConfig: values-mainnet.yaml
+cnode: values-mainnet.yaml
