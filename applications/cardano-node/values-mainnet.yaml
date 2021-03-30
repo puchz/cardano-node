@@ -1,0 +1,18 @@
+network: mainnet
+namespace: cardano-mainnet
+
+resources:
+  limits:
+    memory: "8Gi"
+    cpu: 3
+  requests:
+    memory: "6Gi"
+    cpu: 2
+
+storageClaim: 15Gi
+
+relays:
+  - name: uno
+    port: 3000
+  - name: dos
+    port: 3000

@@ -52,7 +52,7 @@ spec:
   ports:
     - protocol: TCP
       name: node
-      port: {{ .Values.relayPort }}
+      port: {{ .Values.relayOutPort }}
       targetPort: node
       nodePort: {{ .Values.nodePort }}
   type: NodePort

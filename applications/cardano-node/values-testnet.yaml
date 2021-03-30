@@ -1,19 +1,18 @@
 network: testnet
 namespace: cardano-testnet
-relayPort: 3000
-nodePort: 30000
 
-pool:
-  name: block
-  enabled: true
-  port: 3000
+resources:
+  limits:
+    memory: "2Gi"
+    cpu: 2
+  requests:
+    memory: "1Gi"
+    cpu: 1
+
+storageClaim: 5Gi
 
 relays:
   - name: uno
-    enabled: true
     port: 3000
-  - name: dos
-    enabled: true
-    port: 3000
-
-cardanoNodeHostname: zeuspool.duckdns.org
+# - name: dos
+#   port: 3000

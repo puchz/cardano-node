@@ -1,15 +1,14 @@
-storageSize: 5Gi
 prometheusPort: 12798
 prometheusPort2: 9100
 prometheusNamespace: monitoring
 
-resources:
-  limits:
-    memory: "2Gi"
-    cpu: 2
-  requests:
-    memory: "1Gi"
-    cpu: 1
+cardanoNodeHostname: zeuspool.duckdns.org
+nodePort: 30000
+relayOutPort: 3000
+
+pool:
+  name: block
+  port: 3000
 
 topologyUpdater:
   enabled: true

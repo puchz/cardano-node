@@ -1,2 +1,2 @@
 #!/bin/bash
-helm upgrade --install base-config .
+helm upgrade --install -f values-testnet.yaml base-config .

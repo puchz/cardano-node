@@ -1,0 +1,5 @@
+namespaceClaim: cardano-mainnet
+storageCapacity: 15Gi
+
+nodes:
+  - romilda

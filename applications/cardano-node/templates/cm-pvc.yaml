@@ -7,12 +7,12 @@ metadata:
   labels:
     app: cardano-node
 spec:
-  storageClassName: manual
+  storageClassName: local-storage
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: {{ .Values.storageClaim }}
 {{- range $relays := .Values.relays }}
 ---
 apiVersion: v1
@@ -23,10 +23,10 @@ metadata:
   labels:
     app: cardano-node
 spec:
-  storageClassName: manual
+  storageClassName: local-storage
   accessModes:
    - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: {{ $.Values.storageClaim }}
 {{- end }}
