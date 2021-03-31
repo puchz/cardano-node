@@ -58,7 +58,7 @@ RUN cabal build cardano-cli cardano-node
 FROM ubuntu:20.04 as artifacts
 RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y --no-install-recommends netbase jq libnuma-dev \
+  && apt-get install -y --no-install-recommends netbase jq libnuma-dev openssl wget \
   && rm -rf /var/lib/apt/lists/*
 
 ## Libsodium refs
@@ -73,6 +73,24 @@ RUN rm -fr /usr/local/lib/ghc-
 
 # sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
 # sudo cp $(find $HOME/git/cardano-node/dist-newstyle/build -type f -name "cardano-node") /usr/local/bin/cardano-node
+
+ARG NODE_BUILD_NUM
+WORKDIR /etc/config
+## mainnet
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-config.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-byron-genesis.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-shelley-genesis.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-topology.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/mainnet-db-sync-config.json
+## testnet
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/testnet-config.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/testnet-byron-genesis.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/testnet-shelley-genesis.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/testnet-topology.json
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/testnet-db-sync-config.json
+## restconfig
+RUN wget --no-check-certificate https://hydra.iohk.io/build/${NODE_BUILD_NUM}/download/1/rest-config.json
+
 COPY --from=builder /home/src/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-node-1.25.1/x/cardano-node/build/cardano-node/cardano-node /usr/local/bin/cardano-node
 COPY --from=builder /home/src/cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.10.2/cardano-cli-1.25.1/x/cardano-cli/build/cardano-cli/cardano-cli /usr/local/bin/cardano-cli
 
