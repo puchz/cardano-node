@@ -2,11 +2,6 @@
 
 set -x
 
-# NODE_BUILD_NUM
-# echo export NODE_BUILD_NUM=$(curl https://hydra.iohk.io/job/Cardano/iohk-nix/cardano-deployment/latest-finished/download/1/index.html | grep -e "build" | sed 's/.*build\/\([0-9]*\)\/download.*/\1/g')
-# NODE_CONFIG
-# echo export NODE_CONFIG=mainnet
-
 if [ -z "${NETWORK}" ]; then
   echo "Missing required NETWORK env var. Exiting..."
   exit 1

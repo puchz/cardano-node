@@ -5,4 +5,8 @@ metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Values.namespace }}
 data:
+{{ if eq $.Values.network "mainnet" }}
+{{ ($.Files.Glob "configuration/mainnet-*.json").AsConfig | indent 2 }}
+{{ else }}
 {{ ($.Files.Glob "configuration/testnet-*.json").AsConfig | indent 2 }}
+{{ end }}

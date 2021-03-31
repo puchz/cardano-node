@@ -3,7 +3,7 @@ namespace: cardano-testnet
 
 resources:
   limits:
-    memory: "2Gi"
+    memory: "4Gi"
     cpu: 2
   requests:
     memory: "1Gi"
@@ -14,5 +14,3 @@ storageClaim: 5Gi
 relays:
   - name: uno
     port: 3000
-# - name: dos
-#   port: 3000

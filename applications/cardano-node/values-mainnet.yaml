@@ -3,11 +3,11 @@ namespace: cardano-mainnet
 
 resources:
   limits:
-    memory: "8Gi"
-    cpu: 3
+    memory: "3Gi"
+    cpu: 1
   requests:
-    memory: "6Gi"
-    cpu: 2
+    memory: "2Gi"
+    cpu: 1
 
 storageClaim: 15Gi
 

@@ -74,12 +74,6 @@ spec:
           - name: config-files
             mountPath: "/etc/config/{{ $.Values.network }}-config.json"
             subPath: "{{ $.Values.network }}-config.json"
-          - name: config-files
-            mountPath: "/etc/config/{{ $.Values.network }}-shelley-genesis.json"
-            subPath: "{{ $.Values.network }}-shelley-genesis.json"
-          - name: config-files
-            mountPath: "/etc/config/{{ $.Values.network }}-byron-genesis.json"
-            subPath: "{{ $.Values.network }}-byron-genesis.json"
           - name: db
             mountPath: /db
       volumes:
@@ -168,12 +162,6 @@ spec:
           - name: config-files
             mountPath: "/etc/config/{{ .Values.network }}-config.json"
             subPath: "{{ .Values.network }}-config.json"
-          - name: config-files
-            mountPath: "/etc/config/{{ .Values.network }}-shelley-genesis.json"
-            subPath: "{{ .Values.network }}-shelley-genesis.json"
-          - name: config-files
-            mountPath: "/etc/config/{{ .Values.network }}-byron-genesis.json"
-            subPath: "{{ .Values.network }}-byron-genesis.json"
           - name: secret-keys
             mountPath: /etc/keys/vrf.skey
             subPath: vrf.skey
