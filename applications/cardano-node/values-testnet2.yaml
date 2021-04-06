@@ -16,8 +16,8 @@ relays:
   - name: uno
     nametopology: CNODE_PORT_UNO
     port: 3001
-    nodePort: 5000
+    nodePort: 30100
   - name: dos
     nametopology: CNODE_PORT_DOS
     port: 3002
-    nodePort: 5001
+    nodePort: 30101
