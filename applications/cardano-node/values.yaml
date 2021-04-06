@@ -4,7 +4,6 @@ prometheusNamespace: monitoring
 
 cardanoNodeHostname: zeuspool.duckdns.org
 nodePort: 30000
-relayOutPort: 3000
 
 pool:
   name: block
@@ -15,4 +14,4 @@ topologyUpdater:
   image:
     repository: "cn-utils"
     tag: "0.1"
-  maxPeers: 15
+  maxPeers: 10

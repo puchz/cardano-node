@@ -70,7 +70,7 @@ spec:
         volumeMounts:
           - name: config-files
             mountPath: "/etc/config/{{ $.Values.network }}-topology.json"
-            subPath: "{{ $.Values.network }}-topology-relay.json"
+            subPath: "{{ $.Values.network }}-topology-relay-{{ $relays.name }}.json"
           - name: config-files
             mountPath: "/etc/config/{{ $.Values.network }}-config.json"
             subPath: "{{ $.Values.network }}-config.json"
