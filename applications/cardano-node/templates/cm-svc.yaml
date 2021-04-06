@@ -53,7 +53,7 @@ spec:
       name: node
       port: {{ $relays.port }}
       targetPort: node
-      nodePort: {{ .Values.nodePort }}
+      nodePort: {{ $.Values.nodePort }}
   type: NodePort
 {{- end }}
 ---
