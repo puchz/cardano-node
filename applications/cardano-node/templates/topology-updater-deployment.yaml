@@ -28,8 +28,10 @@ spec:
               value: "https://api.clio.one/htopology/v1"
             - name: CNODE_HOSTNAME
               value: {{ .Values.cardanoNodeHostname }}
-            - name: CNODE_PORT
-              value: {{ .Values.nodePort | quote }}
+{{- range $relays := .Values.relays }}
+            - name: {{ $relays.nametopology }}
+              value: {{ $relays.nodePort | quote }}
+{{- end }}
             - name: MAX_PEERS
               value: {{ .Values.topologyUpdater.maxPeers | quote }}
             - name: CNODE_TOPOLOGY

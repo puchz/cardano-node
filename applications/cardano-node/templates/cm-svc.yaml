@@ -50,10 +50,10 @@ spec:
     network: {{ $.Values.network }}
   ports:
     - protocol: TCP
-      name: node
+      name: node-{{ $relays.name }}
       port: {{ $relays.port }}
-      targetPort: node
-      nodePort: {{ $.Values.nodePort }}
+      targetPort: node-{{ $relays.name }}
+      nodePort: {{ $relays.nodePort }}
   type: NodePort
 {{- end }}
 ---

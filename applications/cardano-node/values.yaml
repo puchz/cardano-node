@@ -2,9 +2,6 @@ prometheusPort: 12798
 prometheusPort2: 9100
 prometheusNamespace: monitoring
 
-cardanoNodeHostname: zeuspool.duckdns.org
-nodePort: 30000
-
 pool:
   name: block
   port: 3000
