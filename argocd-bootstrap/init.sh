@@ -30,12 +30,6 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    validate: true
 EOF
 
 cat > values-base.yaml << EOF

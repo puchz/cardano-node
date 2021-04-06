@@ -51,8 +51,3 @@ spec:
   destination:
     namespace: monitoring
     server: {{ .Values.spec.destination.server }}
-
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
