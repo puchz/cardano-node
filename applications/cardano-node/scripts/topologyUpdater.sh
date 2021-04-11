@@ -23,7 +23,7 @@ fi
 
 # Set env variables
 PROM_PORT=12798
-TIMEOUT=5
+TIMEOUT=180
 CNODE_VALENCY=1
 
 # same k for testnet and mainnet

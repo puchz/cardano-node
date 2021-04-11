@@ -37,22 +37,6 @@ spec:
       name: node
       port: {{ $relays.port }}
       targetPort: node
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ $.Release.Name }}-relay-{{ $relays.name }}-out
-  namespace: {{ $.Values.namespace }}
-spec:
-  selector:
-    app: {{ $.Release.Name }}
-    type: relay
-    network: {{ $.Values.network }}
-  ports:
-    - protocol: TCP
-      name: node-{{ $relays.name }}
-      port: {{ $relays.port }}
-      targetPort: node-{{ $relays.name }}
       nodePort: {{ $relays.nodePort }}
   type: NodePort
 {{- end }}
