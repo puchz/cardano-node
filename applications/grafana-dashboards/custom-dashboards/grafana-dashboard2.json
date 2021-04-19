@@ -1142,8 +1142,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "cardano-testnet",
-          "value": "cardano-testnet"
+          "text": "cardano-mainnet",
+          "value": "cardano-mainnet"
         },
         "description": null,
         "error": null,
@@ -1154,12 +1154,12 @@
         "name": "namespace",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "cardano-testnet",
             "value": "cardano-testnet"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "cardano-mainnet",
             "value": "cardano-mainnet"
           }

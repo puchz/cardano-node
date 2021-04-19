@@ -4657,8 +4657,8 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": "cardano-tn2",
-          "value": "cardano-tn2"
+          "text": "cardano-mainnet",
+          "value": "cardano-mainnet"
         },
         "hide": 0,
         "includeAll": false,
@@ -4668,21 +4668,16 @@
         "options": [
           {
             "selected": false,
-            "text": "cardano-mn",
-            "value": "cardano-mn"
-          },
-          {
-            "selected": false,
-            "text": "cardano-tn",
-            "value": "cardano-tn"
+            "text": "cardano-testnet",
+            "value": "cardano-testnet"
           },
           {
             "selected": true,
-            "text": "cardano-tn2",
-            "value": "cardano-tn2"
+            "text": "cardano-mainnet",
+            "value": "cardano-mainnet"
           }
         ],
-        "query": "cardano-mn, cardano-tn, cardano-tn2",
+        "query": "cardano-mainnet, cardano-testnet",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
@@ -4690,9 +4685,9 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
-          "text": "cardano-node-beta-0",
-          "value": "cardano-node-beta-0"
+          "selected": true,
+          "text": "cardano-node-relay-uno-0",
+          "value": "cardano-node-relay-uno-0"
         },
         "datasource": "$datasource",
         "definition": "label_values(cardano_node_metrics_upTime_ns{namespace=~\"$namespace\"}, pod)",
