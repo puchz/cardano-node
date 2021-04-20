@@ -6,6 +6,11 @@ pool:
   name: block
   port: 3000
 
+cnodeVersion:
+  image:
+    repository: "cardano-node"
+    tag: "1.26.2"
+
 topologyUpdater:
   enabled: true
   image:

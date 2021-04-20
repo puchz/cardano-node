@@ -22,8 +22,12 @@ spec:
         type: relay
         network: {{ $.Values.network }}
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       containers:
-      - image: cardano-node:1.25.1
+      - image: "{{ $.Values.cnodeVersion.image.repository }}:{{ $.Values.cnodeVersion.image.tag }}"
         imagePullPolicy: Never
         name: {{ $.Release.Name }}
         command:
@@ -76,6 +80,9 @@ spec:
             subPath: "{{ $.Values.network }}-config.json"
           - name: db
             mountPath: /db
+        securityContext:
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
       volumes:
         - name: config-files
           configMap:
@@ -109,7 +116,7 @@ spec:
         network: {{ .Values.network }}
     spec:
       containers:
-      - image: cardano-node:1.25.1
+      - image: "{{ .Values.cnodeVersion.image.repository }}:{{ .Values.cnodeVersion.image.tag }}"
         imagePullPolicy: Never
         name: {{ .Release.Name }}
         command:

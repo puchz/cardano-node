@@ -89,15 +89,14 @@ if [ -z "${blocknum}" ]; then
   exit 1
 fi
 
-if [ -n "${slotnum}" ]; then
+if [[ ${slotnum} -eq 0 ]]; then
+  syncLog="Status     : starting..."
+elif [[ ${SHELLEY_TRANS_EPOCH} -eq -1 ]]; then
+  syncLog="Status     : syncing..."
+else
   tip_ref=$(getSlotTipRef)
   tip_diff=$(( tip_ref - slotnum ))
-
-  if [[ ${slotnum} -eq 0 ]]; then
-    syncLog="Status     : starting..."
-  elif [[ ${SHELLEY_TRANS_EPOCH} -eq -1 ]]; then
-    syncLog="Status     : syncing..."
-  elif [[ ${tip_diff} -le $(slotInterval) ]]; then
+  if [[ ${tip_diff} -le $(slotInterval) ]]; then
     syncLog="Tip (diff) : ${tip_diff} :)"
   elif [[ ${tip_diff} -le $(( $(slotInterval) * 4 )) ]]; then
     syncLog="Tip (diff) : ${tip_diff} :|"

@@ -10,10 +10,6 @@ fi
 
 OS_ARCH=$(uname -m)
 
-docker build -t cardano-node:1.25.1 \
-  --build-arg GHC_VERSION=8.10.2 \
-  --build-arg OS_ARCH="${OS_ARCH}" \
-  --build-arg CARDANO_VERSION=1.25.1 \
-  --build-arg OS_VERSION=linux \
+docker build -t cardano-node:1.26.2 \
   --build-arg NODE_BUILD_NUM=${NODE_BUILD_NUM} \
-  -f 1.25.1.dockerfile .
+  -f 1.26.2-x86_64.dockerfile .

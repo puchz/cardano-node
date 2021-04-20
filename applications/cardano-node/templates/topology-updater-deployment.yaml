@@ -17,6 +17,10 @@ spec:
         app: topology-updater
         network: {{ $.Values.network }}
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       containers:
         - name: topology-updater
           image: "{{ .Values.topologyUpdater.image.repository }}:{{ .Values.topologyUpdater.image.tag }}"
@@ -39,6 +43,9 @@ spec:
           volumeMounts:
             - name: cardano-node-utils
               mountPath: "/opt/cardano-node/utils"
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
       volumes:
         - name: cardano-node-utils
           configMap:
