@@ -44,7 +44,6 @@ spec:
             - name: cardano-node-utils
               mountPath: "/opt/cardano-node/utils"
           securityContext:
-            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
       volumes:
         - name: cardano-node-utils
