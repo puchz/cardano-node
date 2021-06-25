@@ -9,7 +9,7 @@ pool:
 cnodeVersion:
   image:
     repository: "cardano-node"
-    tag: "1.26.2"
+    tag: "1.27.0"
 
 topologyUpdater:
   enabled: true
