@@ -6,7 +6,7 @@
       "valency": 2
     },
     {
-      "addr": "cardano-node-relay-dos.cardano-testnet.svc.cluster.local",
+      "addr": "cardano-node-relay-dos.cardano-mainnet.svc.cluster.local",
       "port": 3002,
       "valency": 1
     },
